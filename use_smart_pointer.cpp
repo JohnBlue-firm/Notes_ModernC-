@@ -40,7 +40,15 @@ int main() {
     // std::unique_ptr example
     std::unique_ptr<MyClass> uniquePtr(new MyClass());
     uniquePtr->hello();
-
+   //     cannot be copied
+   //std::unique_ptr<int> ptr2 = ptr1;
+   //     can be moved
+    std::unique_ptr<int> movePtr = std::move(uniquePtr);  
+    // Now uniquePtr is nullptr because ownership is transferred to movePtr
+    if (uniquePtr == nullptr) {
+        std::cout << "uniquePtr is nullptr\n";
+    }
+   
     // std::shared_ptr example
     std::shared_ptr<MyClass> sharedPtr1 = std::make_shared<MyClass>();
     std::shared_ptr<MyClass> sharedPtr2 = sharedPtr1;
